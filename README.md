@@ -1,62 +1,113 @@
 # Decision Engine Under Uncertainty
 
-A Python-based system that converts uncertain future outcomes into decisions using:
+A modular Python framework that turns uncertain future outcomes into action recommendations using Monte Carlo simulation, expected value, and risk-adjusted scoring.
 
-- Monte Carlo simulation
-- Expected value logic
-- Risk-adjusted scoring
-- Configurable shock distributions (Normal / Student-t)
+## Overview
 
----
+This project models a common real-world problem: how to choose an action when the future is uncertain and the downside matters.
 
-## Why this project exists
+It is designed to demonstrate:
+- stochastic simulation
+- probabilistic reasoning
+- risk-aware decision logic
+- clean software structure
 
-Most real-world systems are uncertain:
+## Why this matters
 
-- Financial markets  
-- Energy systems  
-- Resource allocation  
-- Strategic planning  
+Most high-value decisions happen under uncertainty:
+- trading and portfolio decisions
+- energy and infrastructure investment
+- resource allocation
+- strategic planning under downside risk
 
-This engine provides a structured way to:
-1. Simulate possible futures  
-2. Quantify upside and downside  
-3. Account for costs and risk  
-4. Recommend whether to take action  
+This framework separates those concerns into reusable layers.
 
----
+## System Design
+
+The code is split into three layers:
+
+- **Simulation layer**: generates uncertain future outcomes
+- **Decision layer**: evaluates whether action is justified
+- **Risk layer**: quantifies downside and tail exposure
+
+This makes the system easier to test, explain, and extend.
+
+## Repository Structure
+
+```text
+decision-engine/
+├── engine/
+│   ├── __init__.py
+│   ├── simulator.py
+│   ├── decision.py
+│   └── risk.py
+├── examples/
+│   ├── stock_case.py
+│   └── energy_case.py
+├── tests/
+│   ├── test_simulator.py
+│   └── test_decision.py
+├── assets/
+│   ├── monte_carlo_paths.png
+│   └── terminal_histogram.png
+├── README.md
+├── requirements.txt
+└── pyproject.toml
+```
 
 ## Features
 
-- Vectorized Monte Carlo simulation (NumPy)
-- Memory-efficient terminal-value modeling
-- Optional fat-tail modeling (Student-t distribution)
-- Modular decision engine
-- Risk metrics (volatility, VaR, worst/best case)
+- vectorized Monte Carlo simulation with NumPy
+- memory-efficient terminal-value simulation
+- optional full-path simulation for analysis
+- configurable shock distributions:
+  - normal
+  - Student-t
+- reusable decision engine
+- reusable risk metrics
+- example scripts for finance and energy
 
----
+## Example Visualization
 
-## Run the project
+Simulated Monte Carlo paths:
+
+![Monte Carlo Paths](assets/monte_carlo_paths.png)
+
+Distribution of terminal values:
+
+![Terminal Histogram](assets/terminal_histogram.png)
+
+## Installation
 
 ```bash
 pip install -r requirements.txt
-python decision_engine.py
 ```
 
----
+## Run the examples
 
-## Example Use Cases
+```bash
+python examples/stock_case.py
+python examples/energy_case.py
+```
 
-- Quantitative trading decisions  
-- Energy investment modeling  
-- Resource allocation under uncertainty  
-- Strategic planning  
+## Run tests
 
----
+```bash
+pytest
+```
 
-## What this demonstrates
+## Future Improvements
 
-- Probabilistic thinking  
-- Simulation under uncertainty  
-- Risk-aware decision-making  
-- Clean system design  
+- add Bayesian updating for dynamic belief revision
+- support custom utility functions
+- add portfolio-level analysis
+- add additional shock models beyond normal and Student-t
+- build a lightweight dashboard for scenario analysis
+
+## Positioning
+
+This project is relevant to:
+- quantitative research
+- simulation engineering
+- technical strategy
+- risk-aware planning
